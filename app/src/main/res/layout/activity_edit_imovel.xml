@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditActivityImovel">
+
+    <TextView
+        android:id="@+id/text_endereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/endereco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_custo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/custo"
+        app:layout_constraintStart_toStartOf="@+id/text_endereco"
+        app:layout_constraintTop_toBottomOf="@+id/text_endereco" />
+
+    <TextView
+        android:id="@+id/text_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/area"
+        app:layout_constraintStart_toStartOf="@+id/text_endereco"
+        app:layout_constraintTop_toBottomOf="@+id/text_endereco" />
+
+    <TextView
+        android:id="@+id/text_quartos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:text="@string/quartos"
+        app:layout_constraintStart_toStartOf="@+id/text_endereco"
+        app:layout_constraintTop_toBottomOf="@+id/text_endereco" />
+
+    <TextView
+        android:id="@+id/text_suites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/suites"
+        app:layout_constraintStart_toStartOf="@+id/text_endereco"
+        app:layout_constraintTop_toBottomOf="@+id/text_quartos" />
+
+    <TextView
+        android:id="@+id/text_vagasest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/vagasest"
+        app:layout_constraintStart_toStartOf="@+id/text_endereco"
+        app:layout_constraintTop_toBottomOf="@+id/text_suites" />
+
+    <RadioGroup
+        android:id="@+id/radioGrupo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        android:scaleX="0.9"
+        android:scaleY="0.9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_quartos">
+
+        <RadioButton
+            android:id="@+id/kitchenette"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:text="@string/radio_kit" />
+
+        <RadioButton
+            android:id="@+id/casa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:text="@string/radio_casa" />
+
+        <RadioButton
+
+            android:id="@+id/apartamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radio_ap" />
+
+        <RadioButton
+            android:id="@+id/casaCond"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:text="@string/radio_casaCond" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/text_area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_area"
+        app:layout_constraintTop_toTopOf="@+id/text_area" />
+
+    <EditText
+        android:id="@+id/custo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/text_custo"
+        app:layout_constraintEnd_toEndOf="@+id/area"
+        app:layout_constraintStart_toStartOf="@+id/area"
+        app:layout_constraintTop_toTopOf="@+id/text_custo" />
+
+    <EditText
+        android:id="@+id/endereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Rua..."
+        app:layout_constraintBottom_toBottomOf="@+id/text_endereco"
+        app:layout_constraintEnd_toEndOf="@+id/area"
+        app:layout_constraintStart_toStartOf="@+id/area"
+        app:layout_constraintTop_toTopOf="@+id/text_endereco" />
+
+    <NumberPicker
+        android:id="@+id/qntQuartos"
+        android:layout_width="40dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="140dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_quartos"
+        app:layout_constraintStart_toEndOf="@+id/text_quartos"
+        app:layout_constraintTop_toTopOf="@+id/text_quartos" />
+
+    <NumberPicker
+        android:id="@+id/qntSuites"
+        android:layout_width="40dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_suites"
+        app:layout_constraintEnd_toEndOf="@+id/qntQuartos"
+        app:layout_constraintStart_toStartOf="@+id/qntQuartos"
+        app:layout_constraintTop_toTopOf="@+id/text_suites" />
+
+    <NumberPicker
+        android:id="@+id/qntVagases"
+        android:layout_width="40dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text_vagasest"
+        app:layout_constraintEnd_toEndOf="@+id/qntSuites"
+        app:layout_constraintStart_toStartOf="@+id/qntSuites"
+        app:layout_constraintTop_toTopOf="@+id/text_vagasest" />
+
+    <Button
+        android:id="@+id/excluiImovel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/excluiImovel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/salvaImovel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="salvarClicado"
+        android:text="@string/salvaImovel"
+        app:layout_constraintBottom_toBottomOf="@+id/excluiImovel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/excluiImovel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

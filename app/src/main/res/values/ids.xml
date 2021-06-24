@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="text_endereco" type="id"></item>
+    <item name="text_custo" type="id"></item>
+    <item name="text_area" type="id"></item>
+    <item name="text_quartos" type="id"></item>
+    <item name="text_suites" type="id"></item>
+    <item name="text_vagasest" type="id"></item>
+    <item name="radioGrupo" type="id"></item>
+    <item name="kitchenette" type="id"></item>
+    <item name="casa" type="id"></item>
+    <item name="apartamento" type="id"></item>
+    <item name="casaCond" type="id"></item>
+    <item name="area" type="id"></item>
+    <item name="custo" type="id"></item>
+    <item name="endereco" type="id"></item>
+    <item name="qntQuartos" type="id"></item>
+    <item name="qntSuites" type="id"></item>
+    <item name="qntVagases" type="id"></item>
+    <item name="excluiImovel" type="id"></item>
+    <item name="salvaImovel" type="id"></item>
+</resources>

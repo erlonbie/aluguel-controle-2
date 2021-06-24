@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">controle-alugueis</string>
+    <string name="button_imoveis">Imóveis</string>
+    <string name="button_clientes">Clientes</string>
+    <string name="button_alugueis">Alugueis</string>
+    <string name="endereco">Endereço:</string>
+    <string name="custo">Custo:</string>
+    <string name="area">Area:</string>
+    <string name="quartos">Quartos:</string>
+    <string name="suites">Suites:</string>
+    <string name="vagasest">Vagas de estacionamento</string>
+    <string name="radio_kit">Kitchenette</string>
+    <string name="radio_casa">Casa Padrao</string>
+    <string name="radio_ap">Apartamento</string>
+    <string name="radio_casaCond">Casa Condominio</string>
+    <string name="excluiImovel">Excluir</string>
+    <string name="salvaImovel">Salvar</string>
+</resources>
