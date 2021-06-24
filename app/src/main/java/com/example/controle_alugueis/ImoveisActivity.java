@@ -62,8 +62,8 @@ class ImoveisAdapter extends RecyclerView.Adapter<ImoveisViewHolder> {
     }
 
     public ImoveisViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ConstraintLayout v = (ConstraintLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
-        ImoveisViewHolder ih = new ImoveisViewHolder(v, this.context);
+        ConstraintLayout v = (ConstraintLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item2, parent, false);
+        ImoveisViewHolder ih = new ImoveisViewHolder(v, context);
         return ih;
     }
 
