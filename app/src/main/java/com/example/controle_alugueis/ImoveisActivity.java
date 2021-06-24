@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ public class ImoveisActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ImoveisAdapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,16 @@ public class ImoveisActivity extends AppCompatActivity {
 
         adapter = new ImoveisAdapter(this);
         recyclerView.setAdapter(adapter);
+
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayoyt);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.update();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
 
     }
 
@@ -95,9 +108,9 @@ class ImoveisViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     }
 
     public void onClick(View v) {
-        //Toast.makeText(this.context, "Imóvel: " + this.categoria.getText().toString() + "\nId: " + this.item_id.getText().toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Imóvel: " + this.categoria.getText().toString() + "\nId: " + this.item_id.getText().toString(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, EditActivityImovel.class);
-        intent.putExtra("imovelId", this.id);
+        intent.putExtra("imovelId", Integer.parseInt(this.item_id.getText().toString()));
         context.startActivity(intent);
     }
 

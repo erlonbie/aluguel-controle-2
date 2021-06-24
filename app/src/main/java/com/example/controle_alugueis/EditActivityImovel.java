@@ -10,6 +10,7 @@ import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EditActivityImovel extends AppCompatActivity {
 
@@ -36,7 +37,7 @@ public class EditActivityImovel extends AppCompatActivity {
         editSuites.setMaxValue(5);
         editSuites.setMinValue(1);
         editVagas = findViewById(R.id.qntVagases);
-        editVagas.setMaxValue(3);
+        editVagas.setMaxValue(4);
         editVagas.setMinValue(1);
         //addListenerButton();
         group = findViewById(R.id.radioGrupo);
@@ -47,11 +48,15 @@ public class EditActivityImovel extends AppCompatActivity {
         buttonCC = (RadioButton) findViewById(R.id.casaCond);
         imovelDAO = new ImovelDAO(this);
 
+
         Intent intent = getIntent();
         imovelId = intent.getIntExtra("imovelId", -1);
 
+
+
         if(imovelId != -1) {
             Imovel imovel = imovelDAO.get(imovelId);
+            Toast.makeText(this, imovelDAO.get(imovelId).getCategoria(), Toast.LENGTH_SHORT).show();
             editEndereco.setText(imovel.getEndereco());
             editCusto.setText(String.valueOf(imovel.getCusto()));
             editArea.setText(String.valueOf(imovel.getArea()));
@@ -60,19 +65,19 @@ public class EditActivityImovel extends AppCompatActivity {
             editSuites.setValue(imovel.getQntSuites());
             editVagas.setValue(imovel.getQntVagasEstacionamento());
             if(imovel.getCategoria().equals("Kitchenette")){
-                buttonK.setSelected(true);
+                //buttonK.setSelected(true);
                 buttonK.setChecked(true);
             }
-            else if(imovel.getCategoria().equals("Casa Padrão")) {
-                buttonCP.setSelected(true);
+            else if(imovel.getCategoria().equals("Casa Padrao")) {
+                //buttonCP.setSelected(true);
                 buttonCP.setChecked(true);
             }
             else if(imovel.getCategoria().equals("Apartamento")) {
-                buttonA.setSelected(true);
+                //buttonA.setSelected(true);
                 buttonA.setChecked(true);
             }
-            else if(imovel.getCategoria().equals("Casa Condomínio")) {
-                buttonCC.setSelected(true);
+            else if(imovel.getCategoria().equals("Casa Condominio")) {
+                //buttonCC.setSelected(true);
                 buttonCC.setChecked(true);
             }
         }
