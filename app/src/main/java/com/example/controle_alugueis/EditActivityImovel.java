@@ -102,16 +102,44 @@ public class EditActivityImovel extends AppCompatActivity {
     public void salvarClicado(View view) {
         Imovel imovel = null;
         if(buttonK.isChecked()) {
-            imovel = new Imovel(imovelId, buttonK.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editCusto.getText().toString()), Double.parseDouble(editArea.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 0, 0, 0, 0);
+            if(editEndereco.getText().toString().equals("") || editArea.getText().toString().equals("") || editCusto.getText().toString().equals("")) {
+                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else{
+                imovel = new Imovel(imovelId, buttonK.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editArea.getText().toString()), Double.parseDouble(editCusto.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 0, 0, 0, 0);
+            }
         }
         else if(buttonCP.isChecked()) {
-            imovel = new Imovel(imovelId, buttonCP.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editCusto.getText().toString()), Double.parseDouble(editArea.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 0, 1, 0, 0);
+            if(editEndereco.getText().toString().equals("") || editArea.getText().toString().equals("") || editCusto.getText().toString().equals("")) {
+                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else {
+                imovel = new Imovel(imovelId, buttonCP.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editArea.getText().toString()), Double.parseDouble(editCusto.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 0, 1, 0, 0);
+            }
         }
         else if(buttonA.isChecked()) {
-            imovel = new Imovel(imovelId, buttonA.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editCusto.getText().toString()), Double.parseDouble(editArea.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 1, 0, 1, 0);
+            if(editEndereco.getText().toString().equals("") || editArea.getText().toString().equals("") || editCusto.getText().toString().equals("")) {
+                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else {
+                imovel = new Imovel(imovelId, buttonA.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editArea.getText().toString()), Double.parseDouble(editCusto.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 1, 0, 1, 0);
+            }
         }
         else if(buttonCC.isChecked()) {
-            imovel = new Imovel(imovelId, buttonCC.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editCusto.getText().toString()), Double.parseDouble(editArea.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 1, 1, 1, 0);
+            if(editEndereco.getText().toString().equals("") || editArea.getText().toString().equals("") || editCusto.getText().toString().equals("")) {
+                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else {
+                imovel = new Imovel(imovelId, buttonCC.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editArea.getText().toString()), Double.parseDouble(editCusto.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 1, 1, 1, 0);
+            }
+        }
+        else {
+            Toast.makeText(this, "Selecione um tipo de imóvel!", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         boolean result;
