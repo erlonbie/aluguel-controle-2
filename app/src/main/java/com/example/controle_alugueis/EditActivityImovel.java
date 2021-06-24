@@ -148,6 +148,11 @@ public class EditActivityImovel extends AppCompatActivity {
         if(result) finish();
     }
 
+    public void apagarClicado(View view) {
+        imovelDAO.delete(imovelId);
+        finish();
+    }
+
 
 
 }
