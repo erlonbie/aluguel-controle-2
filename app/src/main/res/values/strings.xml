@@ -15,4 +15,9 @@
     <string name="radio_casaCond">Casa Condominio</string>
     <string name="excluiImovel">Excluir</string>
     <string name="salvaImovel">Salvar</string>
+    <string name="nome_cliente">Nome:</string>
+    <string name="idade_cliente">Idade:</string>
+    <string name="imovel_text" />
+    <string name="imovel_text2">Selecione um imóvel:</string>
+    <string name="cliente_text2">Selecione um cliente:</string>
 </resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditActivityCliente">
+
+    <TextView
+        android:id="@+id/text_endereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/nome_cliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/idade_cliente"
+        app:layout_constraintStart_toStartOf="@+id/text_endereco"
+        app:layout_constraintTop_toBottomOf="@+id/text_endereco" />
+
+    <EditText
+        android:id="@+id/nomeCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="70dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/text_endereco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_endereco" />
+
+    <Button
+        android:id="@+id/excluiImovel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="24dp"
+        android:onClick="apagarClicado2"
+        android:text="@string/excluiImovel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/salvaImovel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:onClick="salvarClicado2"
+        android:text="@string/salvaImovel"
+        app:layout_constraintBottom_toBottomOf="@+id/excluiImovel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/excluiImovel" />
+
+    <EditText
+        android:id="@+id/idadeCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        app:layout_constraintBottom_toBottomOf="@+id/text_area"
+        app:layout_constraintEnd_toEndOf="@+id/nomeCliente"
+        app:layout_constraintStart_toStartOf="@+id/endereco"
+        app:layout_constraintTop_toTopOf="@+id/text_area" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

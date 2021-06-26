@@ -45,6 +45,34 @@ public class ImovelDAO {
         return imoveisList;
     }
 
+    public ArrayList<String> getListNames() {
+        String tmp = "";
+        String[] opcoes = {"não","sim"};
+        ArrayList<String> imoveisList = new ArrayList<>();
+        String sql = "SELECT * FROM imoveis ORDER BY id";
+        Cursor cursor = database.rawQuery(sql, null);
+
+        while (cursor.moveToNext()) {
+            int id = cursor.getInt(0);
+            String cat = cursor.getString(1);
+            String end = cursor.getString(2);
+            double area = cursor.getDouble(3);
+            double custo = cursor.getDouble(4);
+            int quarto = cursor.getInt(5);
+            int suite = cursor.getInt(6);
+            int vaga = cursor.getInt(7);
+            int piscina = cursor.getInt(8);
+            int churra = cursor.getInt(9);
+            int play = cursor.getInt(10);
+            int alugado = cursor.getInt(11);
+            tmp += "Id: " + id + "|" + cat + "\nArea: " + area + " m2|Custo: R$" + custo + "\nQuartos: " + quarto + "|Suítes: " + suite + "|Vagas: " + vaga + "\nPiscina: " + opcoes[piscina] + "|Churrasqueira: " + opcoes[churra] + "|Playground: " + opcoes[play] + "\nAlugado: " + opcoes[alugado];
+            imoveisList.add(tmp);
+            tmp = "";
+        }
+
+        return imoveisList;
+    }
+
     public boolean add(Imovel imovel) {
 //        imovel.setId(imoveisList.size());
 //        imoveisList.add(imovel);

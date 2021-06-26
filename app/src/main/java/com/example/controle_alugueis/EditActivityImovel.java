@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -100,6 +101,7 @@ public class EditActivityImovel extends AppCompatActivity {
 //    }
 
     public void salvarClicado(View view) {
+
         Imovel imovel = null;
         if(buttonK.isChecked()) {
             if(editEndereco.getText().toString().equals("") || editArea.getText().toString().equals("") || editCusto.getText().toString().equals("")) {
