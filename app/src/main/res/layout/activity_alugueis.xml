@@ -18,6 +18,7 @@
         tools:visibility="visible">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_recycler_alugueis"
             android:layout_width="407dp"
             android:layout_height="301dp"
             android:layout_marginStart="1dp"
@@ -65,5 +66,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/spinnerClientes"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/alugaImovel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:onClick="alugaImovel"
+        android:text="@string/aluga_imovel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,4 +20,5 @@
     <string name="imovel_text" />
     <string name="imovel_text2">Selecione um imóvel:</string>
     <string name="cliente_text2">Selecione um cliente:</string>
+    <string name="aluga_imovel">Alugar</string>
 </resources>
