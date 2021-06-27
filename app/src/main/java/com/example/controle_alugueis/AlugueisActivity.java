@@ -96,6 +96,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
         ImovelDAO imovelDAO = new ImovelDAO(this);
         Imovel imovel = imovelDAO.get(id_imovel);
         imovelDAO.alugaImovel(imovel);
+        adapter.update();
+        adapter.notifyDataSetChanged();
+        loadSpinners();
     }
 
     @Override
@@ -185,9 +188,15 @@ class AlugueisAdapter extends RecyclerView.Adapter<AlugueisViewHolder> {
 
     public void onBindViewHolder(AlugueisViewHolder holder, int position) {
         holder.aluguel_id.setText(String.valueOf(alugueis.get(position).getId()));
-        holder.categoria.setText(imoveis.get(position).getCategoria());
+        //holder.categoria.setText(imoveis.get(position).getCategoria());
+
         holder.imovel_id.setText(String.valueOf(alugueis.get(position).getImovel_id()));
-        holder.clientName.setText(String.valueOf(clientes.get(position).getNome()));
+        //holder.clientName.setText(String.valueOf(clientes.get(position).getNome()));
+        AluguelDAO aDAO = new AluguelDAO(context);
+        //holder.clientName.setText(aDAO.nomeCliente(position));
+        holder.categoria.setText(aDAO.categoriaImovel((alugueis.get(position).getId())));
+        holder.clientName.setText(aDAO.nomeCliente(alugueis.get(position).getId()));
+        update();
     }
 
     @Override

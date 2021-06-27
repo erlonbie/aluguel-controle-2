@@ -107,4 +107,40 @@ public class AluguelDAO {
         }
         return false;
     }
+
+    public String nomeCliente(int id) {
+        String nome = "123";
+        String sql = "SELECT * FROM alugueis WHERE id=" + id;
+        Cursor cursor = database.rawQuery(sql, null);
+
+        if (cursor.moveToNext()) {
+            nome = "cheguei até aqui";
+            int cliente_id = cursor.getInt(2);
+            String sql2 = "SELECT * FROM clientes WHERE id=" + cliente_id;
+            Cursor cursor2 = database.rawQuery(sql2, null);
+            if (cursor2.moveToNext()) {
+                nome = cursor2.getString(2);
+            }
+        }
+
+        return nome;
+    }
+
+    public String categoriaImovel(int id) {
+        String cat = "123";
+        String sql = "SELECT * FROM alugueis WHERE id=" + id;
+        Cursor cursor = database.rawQuery(sql, null);
+
+        if (cursor.moveToNext()) {
+            cat = "cheguei até aqui";
+            int imovel_id = cursor.getInt(1);
+            String sql2 = "SELECT * FROM imoveis WHERE id=" + imovel_id;
+            Cursor cursor2 = database.rawQuery(sql2, null);
+            if (cursor2.moveToNext()) {
+                cat = cursor2.getString(1);
+            }
+        }
+
+        return cat;
+    }
 }

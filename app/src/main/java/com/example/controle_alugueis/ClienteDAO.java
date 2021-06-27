@@ -36,7 +36,7 @@ public class ClienteDAO {
     public ArrayList<String> getListNames() {
         String tmp = "";
         ArrayList<String> clientesList = new ArrayList<>();
-        String sql = "SELECT * FROM clientes ORDER BY nome";
+        String sql = "SELECT * FROM clientes ORDER BY id";
         Cursor cursor = database.rawQuery(sql, null);
 
         while (cursor.moveToNext()) {
