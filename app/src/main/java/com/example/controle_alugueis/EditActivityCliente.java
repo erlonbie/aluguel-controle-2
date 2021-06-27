@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class EditActivityCliente extends AppCompatActivity {
 
     private ClienteDAO clienteDAO;
+    private AluguelDAO aluguelDAO;
     private int clientId;
     private TextView editNome, editIdade;
 
@@ -22,6 +23,7 @@ public class EditActivityCliente extends AppCompatActivity {
         editNome = findViewById(R.id.nomeCliente);
         editIdade = findViewById(R.id.idadeCliente);
         clienteDAO = new ClienteDAO(this);
+        aluguelDAO = new AluguelDAO(this);
 
         Intent intent = getIntent();
         clientId = intent.getIntExtra("clientId", -1);
@@ -53,6 +55,11 @@ public class EditActivityCliente extends AppCompatActivity {
     }
 
     public void apagarClicado2(View view) {
+        AluguelDAO aluguelDAO = new AluguelDAO(this);
+        if(aluguelDAO.temCliente(clientId)){
+            Toast.makeText(this, "Esse Cliente está vinculado a um aluguel! Apague o aluguel antes", Toast.LENGTH_SHORT).show();
+            return;
+        }
         clienteDAO.delete(clientId);
         finish();
     }

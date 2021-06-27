@@ -39,6 +39,7 @@ public class ImoveisActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 adapter.update();
+                adapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });

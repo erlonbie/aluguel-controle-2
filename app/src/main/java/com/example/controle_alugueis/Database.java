@@ -15,7 +15,10 @@ public class Database extends SQLiteOpenHelper {
     public static final String SQL_CREATE_ALUGUEIS = "CREATE TABLE alugueis (id INTEGER PRIMARY KEY AUTOINCREMENT, imovel_id INT, cliente_id INT, inicio TEXT, termino TEXT, seguro DOUBLE, chaveExtra DOUBLE, mobiliado DOUBLE, FOREIGN KEY (imovel_id) REFERENCES imoveis (id), FOREIGN KEY (cliente_id) REFERENCES clientes (id))";
 
     public static final String SQL_POPULATE_IMOVEIS = "INSERT INTO imoveis VALUES (NULL, 'Kitchenette', 'Rua 1', '22.5', '10.2', '1', '1', '1', '0', '0', '0', '0')";
+    public static final String SQL_POPULATE_IMOVEIS2 = "INSERT INTO imoveis VALUES (NULL, 'Casa Padrao', 'Rua 2', '19.5', '1.2', '2', '1', '2', '0', '1', '0', '0')";
     public static final String SQL_POPULATE_CLIENTES = "INSERT INTO clientes VALUES (NULL, '0', 'Erlon Bie', '29')";
+    public static final String SQL_POPULATE_CLIENTES2 = "INSERT INTO clientes VALUES (NULL, '0', 'Agner Bie', '31')";
+
 
     public static final String SQL_DELETE_IMOVEIS = "DROP TABLE IF EXISTS imoveis";
     public static final String SQL_DELETE_CLIENTES = "DROP TABLE IF EXISTS clientes";
@@ -32,7 +35,10 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_ALUGUEIS);
 
         db.execSQL(SQL_POPULATE_IMOVEIS);
+        db.execSQL(SQL_POPULATE_IMOVEIS2);
+
         db.execSQL(SQL_POPULATE_CLIENTES);
+        db.execSQL(SQL_POPULATE_CLIENTES2);
 
     }
 

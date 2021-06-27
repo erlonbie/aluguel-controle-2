@@ -55,7 +55,7 @@ public class AluguelDAO {
 
         try {
             database.execSQL(sql);
-            Toast.makeText(context, "Aluguel Salvo!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Aluguel Salvo!", Toast.LENGTH_SHORT).show();
             return true;
         }
         catch (SQLException e) {
@@ -84,5 +84,27 @@ public class AluguelDAO {
            return new Aluguel(id, imovel_id, cliente_id, inicio, termino, seguro, chaveEstra, mobiliado);
         }
         return null;
+    }
+
+    public boolean temCliente(int id) {
+
+        String sql = "SELECT * FROM alugueis WHERE id=" + id;
+        Cursor cursor = database.rawQuery(sql, null);
+
+        if(cursor.moveToNext()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean temImovel(int id) {
+
+        String sql = "SELECT * FROM alugueis WHERE id=" + id;
+        Cursor cursor = database.rawQuery(sql, null);
+
+        if(cursor.moveToNext()) {
+            return true;
+        }
+        return false;
     }
 }

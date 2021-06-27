@@ -169,6 +169,36 @@ public class ImovelDAO {
         return null;
     }
 
+    public boolean alugaImovel(Imovel imovel) {
+//        imoveisList.set(imovel.getId(), imovel);
+//        Toast.makeText(context, "Imovel atualizado!", Toast.LENGTH_SHORT).show();
+//        return true;
+
+        String sql = "UPDATE imoveis SET "
+                + "categoria='" + imovel.getCategoria() + "', "
+                + "endereco='" + imovel.getEndereco() +  "', "
+                + "area='" + imovel.getArea() + "', "
+                + "custo='" + imovel.getCusto() + "', "
+                + "qntQuartos='" + imovel.getQntQuartos() + "', "
+                + "qntSuites='" + imovel.getQntSuites() + "', "
+                + "qntVagasEstacionamento='" + imovel.getQntVagasEstacionamento() + "', "
+                + "piscina='" + imovel.getPiscina() + "', "
+                + "churrasqueira='" + imovel.getChurrasqueira() + "', "
+                + "playground='" + imovel.getPlayground() + "', "
+                + "alugado='" + 1 + "' "
+                + "WHERE id=" +imovel.getId();
+
+        try {
+            database.execSQL(sql);
+            Toast.makeText(context, "Imóvel alugado!", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        catch (SQLException e) {
+            Toast.makeText(context, "Erro ao alugar um imóvel!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
     public String getCat(Imovel imovel) {
         return imovel.getCategoria();
     }

@@ -19,7 +19,7 @@ public class ClienteDAO {
 
     public ArrayList<Cliente> getList() {
         ArrayList<Cliente> clientesList = new ArrayList<>();
-        String sql = "SELECT * FROM clientes ORDER BY nome";
+        String sql = "SELECT * FROM clientes ORDER BY id";
         Cursor cursor = database.rawQuery(sql, null);
 
         while (cursor.moveToNext()) {

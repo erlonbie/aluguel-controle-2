@@ -57,6 +57,8 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onRefresh() {
                 adapter.update();
+                adapter.notifyDataSetChanged();
+                loadSpinners();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -89,8 +91,11 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
         SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy");
 
         Aluguel aluguel = new Aluguel(0, id_imovel, id_cliente, sdf.format(cal.getTime()) , sdf.format(cal.getTime()) , 0, 0, 0);
-
+        Toast.makeText(this, "Id do cliente: " + id_cliente, Toast.LENGTH_SHORT).show();
         aluguelDAO.add(aluguel);
+        ImovelDAO imovelDAO = new ImovelDAO(this);
+        Imovel imovel = imovelDAO.get(id_imovel);
+        imovelDAO.alugaImovel(imovel);
     }
 
     @Override
@@ -132,13 +137,13 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
         if(parent.getId() == R.id.spinnerImoveis) {
             id_imovel = pegaId(parent.getSelectedItem().toString());
             alugado = parent.getSelectedItem().toString().substring(parent.getSelectedItem().toString().length() -3);
-            //Toast.makeText(this, "Id do imóvel: " + id_imovel, Toast.LENGTH_SHORT).show();
-            //Toast.makeText(this, "Alugado: " + alugado, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Id do imóvel: " + id_imovel, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Alugado: " + alugado, Toast.LENGTH_SHORT).show();
 
         }
         else if(parent.getId() == R.id.spinnerClientes) {
             id_cliente = pegaId(parent.getSelectedItem().toString());
-            //Toast.makeText(this, "Id do cliente: " + id_cliente, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Id do cliente: " + id_cliente, Toast.LENGTH_SHORT).show();
         }
 
     }

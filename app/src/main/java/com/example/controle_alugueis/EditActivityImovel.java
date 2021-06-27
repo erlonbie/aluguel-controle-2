@@ -151,6 +151,11 @@ public class EditActivityImovel extends AppCompatActivity {
     }
 
     public void apagarClicado(View view) {
+        AluguelDAO aluguelDAO = new AluguelDAO(this);
+        if(aluguelDAO.temImovel(imovelId)){
+            Toast.makeText(this, "Esse imóvel está vinculado a um aluguel! Apague o aluguel antes", Toast.LENGTH_SHORT).show();
+            return;
+        }
         imovelDAO.delete(imovelId);
         finish();
     }
