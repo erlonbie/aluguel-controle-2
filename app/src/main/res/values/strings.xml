@@ -21,4 +21,16 @@
     <string name="imovel_text2">Selecione um imóvel:</string>
     <string name="cliente_text2">Selecione um cliente:</string>
     <string name="aluga_imovel">Alugar</string>
+    <string name="inicio_aluguel">Início</string>
+    <string name="termino_aluguel">Término</string>
+    <string name="botao_extras">Extras</string>
+    <string name="botao_relatorio_alugueis">Relatório</string>
+    <string name="botao_relatorio">Relatório</string>
+    <string name="relatorio_periodo">Mes</string>
+    <string name="gerar_relatorio">Gerar Relatório</string>
+    <string-array name="extras_aluguel">
+        <item>Seguro</item>
+        <item>Chave extra</item>
+        <item>Mobiliado</item>
+    </string-array>
 </resources>

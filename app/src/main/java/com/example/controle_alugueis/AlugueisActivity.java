@@ -3,7 +3,10 @@ package com.example.controle_alugueis;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,15 +20,20 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
+import java.util.List;
+
+import static java.lang.Math.pow;
+import static java.lang.Math.round;
 
 public class AlugueisActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -38,6 +46,16 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
     private int id_imovel, id_cliente;
     private String alugado;
     private  AluguelDAO aluguelDAO;
+    private EditText aluguel_inicio, aluguel_termino;
+    private Button botao_inicio, botao_termino;
+    private Calendar calendar;
+    private DatePickerDialog dpd;
+    private Button extras;
+    private List<String> lista_extras;
+    private int[] valores_extras = new int[3];
+    private String data_ini, data_ter;
+    private DecimalFormat dec = new DecimalFormat("#0.00");
+    //private ArrayList<Integer> valores_extras2 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +93,111 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
 
         //aluga = findViewById(R.id.alugaImovel);
 
+        aluguel_inicio = findViewById(R.id.data_inicio);
+        aluguel_termino = findViewById(R.id.data_termino);
+
+        botao_inicio = findViewById(R.id.button); //Tentei usar refactor mas não mudava o nome, então deixei esse button. Deveria ser 'inicio_aluguel'
+        botao_termino = findViewById(R.id.termino_aluguel);
+
+        botao_inicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                int dia = calendar.get(Calendar.DAY_OF_MONTH);
+                int mes = calendar.get(Calendar.MONTH);
+                int ano = calendar.get(Calendar.YEAR);
+
+                dpd = new DatePickerDialog(AlugueisActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        aluguel_inicio.setText(dayOfMonth + "/" + (month+1) + "/" + year);
+                        data_ini = year + "-" + (month+1) + "-" + dayOfMonth;
+                    }
+                }, ano, mes, dia);
+                dpd.show();
+            }
+        });
+
+        botao_termino.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendar = Calendar.getInstance();
+                int dia = calendar.get(Calendar.DAY_OF_MONTH);
+                int mes = calendar.get(Calendar.MONTH);
+                int ano = calendar.get(Calendar.YEAR);
+
+                dpd = new DatePickerDialog(AlugueisActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        aluguel_termino.setText(dayOfMonth + "/" + (month+1) + "/" + year);
+                        data_ter = year + "-" + (month+1) + "-" + dayOfMonth;
+                    }
+                }, ano, mes, dia);
+                dpd.show();
+            }
+        });
+
+        extras = findViewById(R.id.botao_extras);
+        extras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                criaDialogo();
+            }
+        });
+
+    }
+
+    public void criaDialogo() {
+        lista_extras = new ArrayList<>();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Extras");
+        builder.setMultiChoiceItems(R.array.extras_aluguel, null, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                String itens[] = getResources().getStringArray(R.array.extras_aluguel);
+                if(isChecked){
+                    lista_extras.add(itens[which]);
+                }
+                else if(lista_extras.contains(itens[which])) {
+                    lista_extras.remove(itens[which]);
+                }
+            }
+        });
+        builder.setPositiveButton("confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                zeraExtra();
+                for(String item: lista_extras) {
+                    //dado = dado +item;
+                    if(item.equals("Seguro")){
+                        valores_extras[0] = 1;
+                    }
+                    else if(item.equals("Chave extra")) {
+                        valores_extras[1] = 1;
+                    }
+                    else if(item.equals("Mobiliado")) {
+                        valores_extras[2] = 1;
+                    }
+                }
+                Toast.makeText(AlugueisActivity.this, valores_extras[0] + " " + valores_extras[1] + " " + valores_extras[2], Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.create();
+        builder.show();
+    }
+    public double meuTrunca(double num,  int c)
+    {
+        double pot = pow(10, c);
+        double fatorM = num * pot;
+        double res = round(fatorM) / pot;
+        return res;
+    }
+
+    public String inverteString(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        sb.reverse();
+        return sb.toString();
     }
 
     public void alugaImovel(View view) {
@@ -82,23 +205,48 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
             Toast.makeText(this, "Imóvel já está alugado!", Toast.LENGTH_SHORT).show();
             return;
         }
-//        String inicio = SimpleDateFormat.getDateInstance().format("dd/mm/yy");
-//        String termino = SimpleDateFormat.getDateInstance().format("dd/mm/yy");
+        if(aluguel_inicio.getText().toString().equals("") || aluguel_termino.getText().toString().equals("")) {
+            Toast.makeText(this, "Preencha as datas", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
+               if(inverteString(data_ini).compareTo(inverteString(data_ter)) > 0) {
+                   Toast.makeText(this, "A data de início deve ser menor que a de término!", Toast.LENGTH_SHORT).show();
+                   return;
+               }
+               else {
+                   //String inicio = SimpleDateFormat.getDateInstance().format("dd/mm/yy");
+                   //String termino = SimpleDateFormat.getDateInstance().format("dd/mm/yy");
 
-        //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                   //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy");
+                   //Calendar cal = Calendar.getInstance();
+                   //SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy");
+                   //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        Aluguel aluguel = new Aluguel(0, id_imovel, id_cliente, sdf.format(cal.getTime()) , sdf.format(cal.getTime()) , 0, 0, 0);
-        Toast.makeText(this, "Id do cliente: " + id_cliente, Toast.LENGTH_SHORT).show();
-        aluguelDAO.add(aluguel);
-        ImovelDAO imovelDAO = new ImovelDAO(this);
-        Imovel imovel = imovelDAO.get(id_imovel);
-        imovelDAO.alugaImovel(imovel);
-        adapter.update();
-        adapter.notifyDataSetChanged();
-        loadSpinners();
+                   double seguro = valores_extras[0] == 1? meuTrunca(aluguelDAO.custoImovel(id_imovel)*0.1, 2) : 0;
+                   double chave = valores_extras[1] == 1? 200.00 : 0;
+                   double mobilia = valores_extras[2] == 1? meuTrunca(aluguelDAO.custoImovel(id_imovel)*0.3, 2) : 0;
+
+                   //Aluguel aluguel = new Aluguel(0, id_imovel, id_cliente, sdf.format(cal.getTime()) , sdf.format(cal.getTime()) , seguro, chave, mobilia);
+                   Aluguel aluguel = new Aluguel(0, id_imovel, id_cliente, data_ini , data_ter , seguro, chave, mobilia);
+
+                   //Toast.makeText(this, "Id do cliente: " + id_cliente, Toast.LENGTH_SHORT).show();
+                   aluguelDAO.add(aluguel);
+                   ImovelDAO imovelDAO = new ImovelDAO(this);
+                   Imovel imovel = imovelDAO.get(id_imovel);
+                   imovelDAO.alugaImovel(imovel);
+                   adapter.update();
+                   adapter.notifyDataSetChanged();
+                   loadSpinners();
+                   //zeraExtra();
+               }
+           }
+    }
+
+    public void geraRelatorio(View view){
+        Intent intent = new Intent(this, RelatorioAlugueis.class);
+        startActivity(intent);
     }
 
     @Override
@@ -140,15 +288,21 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
         if(parent.getId() == R.id.spinnerImoveis) {
             id_imovel = pegaId(parent.getSelectedItem().toString());
             alugado = parent.getSelectedItem().toString().substring(parent.getSelectedItem().toString().length() -3);
-            Toast.makeText(this, "Id do imóvel: " + id_imovel, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Alugado: " + alugado, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Id do imóvel: " + id_imovel, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Alugado: " + alugado, Toast.LENGTH_SHORT).show();
 
         }
         else if(parent.getId() == R.id.spinnerClientes) {
             id_cliente = pegaId(parent.getSelectedItem().toString());
-            Toast.makeText(this, "Id do cliente: " + id_cliente, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Id do cliente: " + id_cliente, Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public void zeraExtra() {
+        valores_extras[0] = 0;
+        valores_extras[1] = 0;
+        valores_extras[2] = 0;
     }
 
     @Override
@@ -222,7 +376,9 @@ class AlugueisViewHolder extends RecyclerView.ViewHolder implements View.OnClick
     }
 
     public void onClick(View v) {
-        Toast.makeText(context, "Cliente: " + this.aluguel_id.getText().toString() + "\nId: " + this.imovel_id.getText().toString(), Toast.LENGTH_SHORT).show();
+        AluguelDAO adao = new AluguelDAO(context);
+        //Toast.makeText(context, "Cliente: " + this.aluguel_id.getText().toString() + "\nId: " + this.imovel_id.getText().toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, adao.imprimeImovel(Integer.parseInt(this.aluguel_id.getText().toString())), Toast.LENGTH_SHORT).show();
 //        Intent intent = new Intent(context, EditActivityAluguel.class);
 //        intent.putExtra("aluguelId", Integer.parseInt(this.aluguel_id.getText().toString()));
 //        context.startActivity(intent);
