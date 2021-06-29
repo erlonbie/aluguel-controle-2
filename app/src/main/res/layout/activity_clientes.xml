@@ -36,7 +36,7 @@
         android:layout_marginBottom="40dp"
         android:clickable="true"
         android:onClick="buttonAddClick2"
-        android:src="@drawable/ic_baseline_add_business_24"
+        android:src="@drawable/ic_baseline_person_add_alt_1_24"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

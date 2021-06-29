@@ -54,6 +54,8 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
     private List<String> lista_extras;
     private int[] valores_extras = new int[3];
     private String data_ini, data_ter;
+    private int[] datas_inicio = new int[3];
+    private int[] datas_termino = new int[3];
     private DecimalFormat dec = new DecimalFormat("#0.00");
     //private ArrayList<Integer> valores_extras2 = new ArrayList<>();
 
@@ -61,6 +63,7 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alugueis);
+        setTitle("Aluguéis");
 
         recyclerView = findViewById(R.id.list_recycler_alugueis);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -112,6 +115,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         aluguel_inicio.setText(dayOfMonth + "/" + (month+1) + "/" + year);
                         data_ini = year + "-" + (month+1) + "-" + dayOfMonth;
+                        datas_inicio[0] = year;
+                        datas_inicio[1] = month;
+                        datas_inicio[2] = dayOfMonth;
                     }
                 }, ano, mes, dia);
                 dpd.show();
@@ -131,6 +137,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         aluguel_termino.setText(dayOfMonth + "/" + (month+1) + "/" + year);
                         data_ter = year + "-" + (month+1) + "-" + dayOfMonth;
+                        datas_termino[0] = year;
+                        datas_termino[1] = month;
+                        datas_termino[2] = dayOfMonth;
                     }
                 }, ano, mes, dia);
                 dpd.show();
@@ -194,10 +203,19 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
         return res;
     }
 
-    public String inverteString(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        sb.reverse();
-        return sb.toString();
+//    public String inverteString(String s) {
+//        StringBuilder sb = new StringBuilder(s);
+//        sb.reverse();
+//        return sb.toString();
+//    }
+
+    public boolean comparaDatas(int[] inicio, int[] termino) {
+        for (int i = 0; i < 3; i++) {
+            if(inicio[i] > termino[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void alugaImovel(View view) {
@@ -210,7 +228,7 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
             return;
         }
         else {
-               if(inverteString(data_ini).compareTo(inverteString(data_ter)) > 0) {
+               if(!comparaDatas(datas_inicio, datas_termino)) {
                    Toast.makeText(this, "A data de início deve ser menor que a de término!", Toast.LENGTH_SHORT).show();
                    return;
                }

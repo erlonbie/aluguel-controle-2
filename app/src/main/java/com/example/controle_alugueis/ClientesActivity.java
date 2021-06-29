@@ -27,6 +27,7 @@ public class ClientesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientes);
+        setTitle("Clientes");
 
         recyclerView = findViewById(R.id.list_recycler_cliente);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

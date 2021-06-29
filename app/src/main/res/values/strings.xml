@@ -28,6 +28,8 @@
     <string name="botao_relatorio">Relatório</string>
     <string name="relatorio_periodo">Mes</string>
     <string name="gerar_relatorio">Gerar Relatório</string>
+    <string name="texto_botao_extendido">Ações</string>
+    <string name="relatorio_imoveis">Relatorio dos imóveis</string>
     <string-array name="extras_aluguel">
         <item>Seguro</item>
         <item>Chave extra</item>
