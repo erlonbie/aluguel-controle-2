@@ -176,10 +176,23 @@ public class AluguelDAO {
         return tmp;
     }
 
+    public String mudaFormatoData(String data) {
+        String tmp = "";
+        for (int i = 0; i < data.length(); i++){
+            if(data.charAt(i) != '-') {
+                tmp += data.charAt(i);
+            }
+        }
+        return tmp;
+    }
+
+
+
     public String relatorioAlugueis(String data) {
         String s = "";
         double total = 0;
         double custo = 0;
+        String dataModificado = mudaFormatoData(data);
 //        String sql = "SELECT * FROM alugueis WHERE ("+mes+" BETWEEN month(inicio) AND month(termino)) AND ("+ano+" BETWEEN YEAR(inicio) AND YEAR(termino))";
 //        String sql = "SELECT * FROM alugueis WHERE "+ano+"-"+mes+"-"+dia+" BETWEEN inicio AND termino";
 
@@ -191,9 +204,15 @@ public class AluguelDAO {
             String ini = cursorF.getString(3);
             String ter = cursorF.getString(4);
 
-            //String sql = "SELECT * FROM alugueis WHERE '"+ data + "' BETWEEN '"+ini+"' AND '"+ter+"'";
-//            String sql = "SELECT * FROM alugueis WHERE '"+ ini + "' <= '"+data+"' AND '"+ter+"' >= '"+data+"'";
-            String sql = "SELECT * FROM alugueis WHERE  inicio <= '"+data+"' AND termino >= '"+data+"'";
+            //String sql = "SELECT * FROM alugueis WHERE '"+ data + "' BETWEEN inicio AND termino";
+            String sql = "SELECT * FROM alugueis WHERE '"+ data + "' BETWEEN '"+ ini + "' AND '"+ ter +"'";
+            //String sql = "SELECT * FROM alugueis WHERE '"+ ini + "' <= '"+data+"' AND '"+ ter +"' >= '"+data+"'";
+            //String sql = "SELECT * FROM alugueis WHERE  inicio <= '"+data+"' AND termino >= '"+data+"'";
+            //String sql = "SELECT * FROM alugueis WHERE  CAST(strftime('%s', inicio) as integer) <= CAST(strftime('%s', '"+data+"') as integer) AND CAST(strftime('%s', termino) as integer) >= CAST(strftime('%s', '"+data+"') as integer)";
+            //String sql = "SELECT * FROM alugueis WHERE  CAST(strftime('%s', inicio) as integer) <= CAST(strftime('%s', '"+data+"') as integer) AND CAST(strftime('%s', termino) as integer) >= CAST(strftime('%s', '"+data+"') as integer)";
+            //String sql = "SELECT * FROM alugueis WHERE  CAST(strftime('%s', '"+ini+"') as integer) <= CAST(strftime('%s', '"+data+"') as integer) AND CAST(strftime('%s', '"+ter+"') as integer) >= CAST(strftime('%s', '"+data+"') as integer)";
+
+
             Cursor cursor = database.rawQuery(sql, null);
 
             while (cursor.moveToNext()) {

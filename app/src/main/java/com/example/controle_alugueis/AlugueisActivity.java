@@ -113,8 +113,24 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
                 dpd = new DatePickerDialog(AlugueisActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        aluguel_inicio.setText(dayOfMonth + "/" + (month+1) + "/" + year);
-                        data_ini = year + "-" + (month+1) + "-" + dayOfMonth;
+
+                        if(month+1 < 10) {
+                            if(dayOfMonth < 10) {
+                                data_ini = year + "-0" + (month+1) + "-0" + dayOfMonth;
+                            }
+                            else {
+                                data_ini = year + "-0" + (month+1) + "-" + dayOfMonth;
+                            }
+                        }
+                        else{
+                            if(dayOfMonth < 10) {
+                                data_ini = year + "-" + (month+1) + "-0" + dayOfMonth;
+                            }
+                            else{
+                                data_ini = year + "-" + (month+1) + "-" + dayOfMonth;
+                            }
+                        }
+                        aluguel_inicio.setText(data_ini);
                         datas_inicio[0] = year;
                         datas_inicio[1] = month;
                         datas_inicio[2] = dayOfMonth;
@@ -135,8 +151,24 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
                 dpd = new DatePickerDialog(AlugueisActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        aluguel_termino.setText(dayOfMonth + "/" + (month+1) + "/" + year);
-                        data_ter = year + "-" + (month+1) + "-" + dayOfMonth;
+
+                        if(month+1 < 10) {
+                            if(dayOfMonth < 10) {
+                                data_ter = year + "-0" + (month+1) + "-0" + dayOfMonth;
+                            }
+                            else {
+                                data_ter = year + "-0" + (month+1) + "-" + dayOfMonth;
+                            }
+                        }
+                        else{
+                            if(dayOfMonth < 10) {
+                                data_ter = year + "-" + (month+1) + "-0" + dayOfMonth;
+                            }
+                            else{
+                                data_ter = year + "-" + (month+1) + "-" + dayOfMonth;
+                            }
+                        }
+                        aluguel_termino.setText(data_ter);
                         datas_termino[0] = year;
                         datas_termino[1] = month;
                         datas_termino[2] = dayOfMonth;

@@ -48,11 +48,26 @@ public class RelatorioAlugueis extends AppCompatActivity {
                 dpd = new DatePickerDialog(RelatorioAlugueis.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        data_relatorio.setText(year + "-" + (month+1) + "-" + dayOfMonth);
 //                        mesR = (year + "-" + (month+1) + "-" + dayOfMonth).substring(5, (month+1 > 9? 7 : 6));
 //                        anoR = (year + "-" + (month+1) + "-" + dayOfMonth).substring(0, 4);
 //                        diaR = (year + "-" + (month+1) + "-" + dayOfMonth).substring((month+1 > 9? 7 : 6));
-                        data = year + "-" + (month+1) + "-" + dayOfMonth;
+                        if(month+1 < 10) {
+                            if(dayOfMonth < 10) {
+                                data = year + "-0" + (month+1) + "-0" + dayOfMonth;
+                            }
+                            else {
+                                data = year + "-0" + (month+1) + "-" + dayOfMonth;
+                            }
+                        }
+                        else{
+                            if(dayOfMonth < 10) {
+                                data = year + "-" + (month+1) + "-0" + dayOfMonth;
+                            }
+                            else{
+                                data = year + "-" + (month+1) + "-" + dayOfMonth;
+                            }
+                        }
+                        data_relatorio.setText(data);
                     }
                 }, ano, mes, dia);
                 dpd.show();
