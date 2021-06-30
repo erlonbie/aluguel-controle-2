@@ -13,8 +13,10 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:visibility="visible">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -40,6 +42,27 @@
         app:layout_constraintBottom_toTopOf="@+id/addImovel"
         app:layout_constraintEnd_toEndOf="@+id/addImovel"
         app:srcCompat="@drawable/ic_baseline_assessment_24" />
+
+    <TextView
+        android:id="@+id/texto_adicionar_imovel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/add_imovel"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/addImovel"
+        app:layout_constraintEnd_toStartOf="@+id/addImovel"
+        app:layout_constraintTop_toTopOf="@+id/addImovel" />
+
+    <TextView
+        android:id="@+id/texto_relatorio_imovel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_relatorio_imovel"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/relatorioImovel"
+        app:layout_constraintStart_toStartOf="@+id/texto_adicionar_imovel"
+        app:layout_constraintTop_toTopOf="@+id/relatorioImovel" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addImovel"

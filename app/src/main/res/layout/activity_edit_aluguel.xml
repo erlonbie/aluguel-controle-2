@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditActivityAluguel">
+
+    <EditText
+        android:id="@+id/edit_inicio_aluguel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_botao_inicio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edit_botao_inicio"
+        app:layout_constraintTop_toTopOf="@+id/edit_botao_inicio" />
+
+    <EditText
+        android:id="@+id/edit_termino_aluguel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_botao_termino"
+        app:layout_constraintEnd_toEndOf="@+id/edit_inicio_aluguel"
+        app:layout_constraintTop_toTopOf="@+id/edit_botao_termino" />
+
+    <LinearLayout
+        android:layout_width="314dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/edit_termino_aluguel"
+        app:layout_constraintTop_toBottomOf="@+id/edit_termino_aluguel">
+
+        <Switch
+            android:id="@+id/switch_seguro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/switch_seguro" />
+
+        <Switch
+            android:id="@+id/switch_chave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/switch_chave" />
+
+        <Switch
+            android:id="@+id/switch_mobiliado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/switch_mobiliado" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/botao_excluir_aluguel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="apagarClicado"
+        android:text="@string/excluiImovel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/botao_atualizar_aluguel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:onClick="salvarClicado"
+        android:text="@string/atualizar_aluguel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/edit_botao_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/inicio_aluguel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/edit_botao_termino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/termino_aluguel"
+        app:layout_constraintStart_toStartOf="@+id/edit_botao_inicio"
+        app:layout_constraintTop_toBottomOf="@+id/edit_botao_inicio" />
+</androidx.constraintlayout.widget.ConstraintLayout>

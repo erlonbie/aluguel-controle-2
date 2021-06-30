@@ -25,6 +25,15 @@
         app:layout_constraintStart_toStartOf="@+id/text_endereco"
         app:layout_constraintTop_toBottomOf="@+id/text_endereco" />
 
+    <TextView
+        android:id="@+id/text_area2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/idade_cliente"
+        app:layout_constraintStart_toStartOf="@+id/text_endereco"
+        app:layout_constraintTop_toBottomOf="@+id/text_endereco" />
+
     <EditText
         android:id="@+id/nomeCliente"
         android:layout_width="wrap_content"

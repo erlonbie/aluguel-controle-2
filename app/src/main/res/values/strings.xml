@@ -30,6 +30,12 @@
     <string name="gerar_relatorio">Gerar Relatório</string>
     <string name="texto_botao_extendido">Ações</string>
     <string name="relatorio_imoveis">Relatorio dos imóveis</string>
+    <string name="add_imovel">Adicionar</string>
+    <string name="texto_relatorio_imovel">Relatório</string>
+    <string name="switch_seguro">Seguro</string>
+    <string name="switch_chave">Chave extra</string>
+    <string name="switch_mobiliado">Mobiliado</string>
+    <string name="atualizar_aluguel">Atualizar</string>
     <string-array name="extras_aluguel">
         <item>Seguro</item>
         <item>Chave extra</item>

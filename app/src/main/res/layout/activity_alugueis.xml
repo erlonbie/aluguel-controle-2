@@ -6,6 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".AlugueisActivity">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addAluguel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:enabled="false"
+        android:onClick="alugaImovel"
+        android:src="@drawable/ic_baseline_add_business_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/extended_alugueis"
+        app:layout_constraintEnd_toEndOf="@+id/extended_alugueis" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/relatorioAluguel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:enabled="false"
+        android:onClick="geraRelatorio"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/addAluguel"
+        app:layout_constraintEnd_toEndOf="@+id/addAluguel"
+        app:srcCompat="@drawable/ic_baseline_assessment_24" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extended_alugueis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/texto_botao_extendido"
+        app:icon="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayoyt3"
         android:layout_width="411dp"
@@ -74,28 +111,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerImoveis" />
 
-    <Button
-        android:id="@+id/alugaImovel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:onClick="alugaImovel"
-        android:text="@string/aluga_imovel"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/relatorio_alugueis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="24dp"
-        android:onClick="geraRelatorio"
-        android:text="@string/botao_relatorio"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/data_inicio"
         android:layout_width="wrap_content"
@@ -147,8 +162,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/botao_extras"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColorLink="#FFEB3B"
+        app:layout_constraintEnd_toEndOf="@+id/termino_aluguel"
+        app:layout_constraintStart_toStartOf="@+id/termino_aluguel"
         app:layout_constraintTop_toBottomOf="@+id/termino_aluguel" />
+
+    <TextView
+        android:id="@+id/texto_adicionar_aluguel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/aluga_imovel"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/addAluguel"
+        app:layout_constraintEnd_toStartOf="@+id/addAluguel"
+        app:layout_constraintTop_toTopOf="@+id/addAluguel" />
+
+    <TextView
+        android:id="@+id/texto_relatorio_aluguel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/texto_relatorio_imovel"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/relatorioAluguel"
+        app:layout_constraintEnd_toStartOf="@+id/addAluguel"
+        app:layout_constraintTop_toTopOf="@+id/relatorioAluguel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

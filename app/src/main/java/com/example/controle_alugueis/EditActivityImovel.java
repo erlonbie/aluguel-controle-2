@@ -103,6 +103,13 @@ public class EditActivityImovel extends AppCompatActivity {
 //        });
 //    }
 
+    public boolean verificaSuitesMaiorQueQuarto() {
+        if(editQuartos.getValue() >= editSuites.getValue()) {
+            return true;
+        }
+        return false;
+    }
+
     public void salvarClicado(View view) {
 
         Imovel imovel = null;
@@ -112,6 +119,10 @@ public class EditActivityImovel extends AppCompatActivity {
                 return;
             }
             else{
+                if(!verificaSuitesMaiorQueQuarto()){
+                    Toast.makeText(this, "Quantidade de suites não pode ser maior que a de quartos!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 imovel = new Imovel(imovelId, buttonK.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editArea.getText().toString()), Double.parseDouble(editCusto.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 0, 0, 0, alugado_status);
             }
         }
@@ -121,6 +132,10 @@ public class EditActivityImovel extends AppCompatActivity {
                 return;
             }
             else {
+                if(!verificaSuitesMaiorQueQuarto()){
+                    Toast.makeText(this, "Quantidade de suites não pode ser maior que a de quartos!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 imovel = new Imovel(imovelId, buttonCP.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editArea.getText().toString()), Double.parseDouble(editCusto.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 0, 1, 0, alugado_status);
             }
         }
@@ -130,6 +145,10 @@ public class EditActivityImovel extends AppCompatActivity {
                 return;
             }
             else {
+                if(!verificaSuitesMaiorQueQuarto()){
+                    Toast.makeText(this, "Quantidade de suites não pode ser maior que a de quartos!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 imovel = new Imovel(imovelId, buttonA.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editArea.getText().toString()), Double.parseDouble(editCusto.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 1, 0, 1, alugado_status);
             }
         }
@@ -139,6 +158,10 @@ public class EditActivityImovel extends AppCompatActivity {
                 return;
             }
             else {
+                if(!verificaSuitesMaiorQueQuarto()){
+                    Toast.makeText(this, "Quantidade de suítes não pode ser maior que a de quartos!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 imovel = new Imovel(imovelId, buttonCC.getText().toString(),editEndereco.getText().toString(), Double.parseDouble(editArea.getText().toString()), Double.parseDouble(editCusto.getText().toString()), editQuartos.getValue(), editSuites.getValue(), editVagas.getValue(), 1, 1, 1, alugado_status);
             }
         }

@@ -37,6 +37,7 @@ public class ImoveisActivity extends AppCompatActivity {
 
     private ExtendedFloatingActionButton botao_acao;
     private FloatingActionButton botao_add_imovel, botao_relatorio_imovel;
+    private TextView texto_add, texto_relatorio;
 
 
     @Override
@@ -68,6 +69,8 @@ public class ImoveisActivity extends AppCompatActivity {
 
         botao_add_imovel = findViewById(R.id.addImovel);
         botao_relatorio_imovel = findViewById(R.id.relatorioImovel);
+        texto_add = findViewById(R.id.texto_adicionar_imovel);
+        texto_relatorio =  findViewById(R.id.texto_relatorio_imovel);
 
         botao_acao = findViewById(R.id.extended_imoveis);
         botao_acao.setOnClickListener(new View.OnClickListener() {
@@ -95,12 +98,16 @@ public class ImoveisActivity extends AppCompatActivity {
             botao_add_imovel.setEnabled(true);
             botao_relatorio_imovel.setVisibility(View.VISIBLE);
             botao_relatorio_imovel.setEnabled(true);
+            texto_add.setVisibility(View.VISIBLE);
+            texto_relatorio.setVisibility(View.VISIBLE);
         }
         else{
             botao_add_imovel.setVisibility(View.INVISIBLE);
             botao_add_imovel.setEnabled(false);
             botao_relatorio_imovel.setVisibility(View.INVISIBLE);
             botao_relatorio_imovel.setEnabled(false);
+            texto_add.setVisibility(View.INVISIBLE);
+            texto_relatorio.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -109,11 +116,15 @@ public class ImoveisActivity extends AppCompatActivity {
             botao_acao.startAnimation(rotateClose);
             botao_add_imovel.startAnimation(fromBottom);
             botao_relatorio_imovel.startAnimation(fromBottom);
+            texto_add.setAnimation(fromBottom);
+            texto_relatorio.setAnimation(fromBottom);
         }
         else {
             botao_acao.startAnimation(rotateClose);
             botao_add_imovel.startAnimation(toBottom);
             botao_relatorio_imovel.startAnimation(toBottom);
+            texto_add.setAnimation(toBottom);
+            texto_relatorio.setAnimation(toBottom);
         }
     }
 

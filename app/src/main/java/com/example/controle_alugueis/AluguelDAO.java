@@ -66,6 +66,42 @@ public class AluguelDAO {
         }
     }
 
+    public boolean update(Aluguel aluguel) {
+
+        String sql = "UPDATE alugueis SET "
+                + "imovel_id='" + aluguel.getImovel_id() + "', "
+                + "cliente_id='" + aluguel.getCliente_id() +  "', "
+                + "inicio='" + aluguel.getInicio() + "', "
+                + "termino='" + aluguel.getTermino() + "', "
+                + "seguro='" + aluguel.getSeguro() + "', "
+                + "chaveExtra='" + aluguel.getChaveExtra() + "', "
+                + "mobiliado='" + aluguel.getMobiliado() + "' "
+                + "WHERE id=" + aluguel.getId();
+
+        try {
+            database.execSQL(sql);
+            //Toast.makeText(context, "Aluguel Salvo!", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        catch (SQLException e) {
+            Toast.makeText(context, "Erro ao adicionar um cliente!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    public boolean delete(int id) {
+        String sql = "DELETE FROM alugueis WHERE id=" +id;
+        try {
+            database.execSQL(sql);
+            Toast.makeText(context, "Aluguel apagado!", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        catch (SQLException e) {
+            Toast.makeText(context, "Erro ao deletar um imóvel!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
     public Aluguel get(int id) {
 
         String sql = "SELECT * FROM alugueis WHERE id=" + id;
@@ -186,6 +222,15 @@ public class AluguelDAO {
         return tmp;
     }
 
+//    public double retornaSeguro(int id) {
+//        double res = 0;
+//        String sql = "SELECT * FROM alugueis WHERE id="+id;
+//        Cursor cursor = database.rawQuery(sql, null);
+//        if(cursor.moveToNext()) {
+//            res =
+//        }
+//    }
+
 
 
     public String relatorioAlugueis(String data) {
@@ -205,9 +250,9 @@ public class AluguelDAO {
             String ter = cursorF.getString(4);
 
             //String sql = "SELECT * FROM alugueis WHERE '"+ data + "' BETWEEN inicio AND termino";
-            String sql = "SELECT * FROM alugueis WHERE '"+ data + "' BETWEEN '"+ ini + "' AND '"+ ter +"'";
+            //String sql = "SELECT * FROM alugueis WHERE '"+ data + "' BETWEEN '"+ ini + "' AND '"+ ter +"'";
             //String sql = "SELECT * FROM alugueis WHERE '"+ ini + "' <= '"+data+"' AND '"+ ter +"' >= '"+data+"'";
-            //String sql = "SELECT * FROM alugueis WHERE  inicio <= '"+data+"' AND termino >= '"+data+"'";
+            String sql = "SELECT * FROM alugueis WHERE  inicio <= '"+data+"' AND termino >= '"+data+"'";
             //String sql = "SELECT * FROM alugueis WHERE  CAST(strftime('%s', inicio) as integer) <= CAST(strftime('%s', '"+data+"') as integer) AND CAST(strftime('%s', termino) as integer) >= CAST(strftime('%s', '"+data+"') as integer)";
             //String sql = "SELECT * FROM alugueis WHERE  CAST(strftime('%s', inicio) as integer) <= CAST(strftime('%s', '"+data+"') as integer) AND CAST(strftime('%s', termino) as integer) >= CAST(strftime('%s', '"+data+"') as integer)";
             //String sql = "SELECT * FROM alugueis WHERE  CAST(strftime('%s', '"+ini+"') as integer) <= CAST(strftime('%s', '"+data+"') as integer) AND CAST(strftime('%s', '"+ter+"') as integer) >= CAST(strftime('%s', '"+data+"') as integer)";
@@ -231,14 +276,14 @@ public class AluguelDAO {
                     while (cursor3.moveToNext()) {
                         s += "Cliente: " + cursor3.getString(2) +'\n';
                     }
-                    s += "Imóvel_ID: " + cursor2.getString(0)+", Categoria: "+cursor2.getString(1)+'\n'+"Custo: "+cursor2.getString(4)+" R$"+'\n';
+                    s += "Imóvel_ID: " + cursor2.getString(0)+", Categoria: "+cursor2.getString(1)+'\n'+"Custo: R$ "+dec.format(custo)+" "+'\n';
                 }
                 double seg = Double.parseDouble(cursor.getString(5));
                 double chv = Double.parseDouble(cursor.getString(6));
                 double mob = Double.parseDouble(cursor.getString(7));
                 total = seg + chv + mob;
 
-                s += "Na data "+data+ ":"+'\n'+"    "+"Seguro: "+dec.format(seg)+" R$"+'\n'+"    "+"Chave-extra: "+dec.format(chv)+" R$"+'\n'+"    "+"Mobília: "+dec.format(mob)+" R$"+'\n'+"    "+"Subtotal: "+dec.format(total)+" R$"+'\n'+ "Total(Subtotal + custo): "+dec.format(total+custo) + " R$" +'\n' +'\n';
+                s += "Na data "+data+ ":"+'\n'+"    "+"Seguro: R$ "+dec.format(seg)+" "+'\n'+"    "+"Chave-extra: R$ "+dec.format(chv)+" "+'\n'+"    "+"Mobília: R$ "+dec.format(mob)+" "+'\n'+"    "+"\t\tSubtotal: R$ "+dec.format(total)+" "+'\n'+ "Total(Subtotal + custo): R$ "+dec.format(total+custo) + " " +'\n' +'\n' +"-----------------------------------------------"+'\n'+'\n';
             }
 
         }

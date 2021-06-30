@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Controlealugueis">
-        <activity android:name=".RelatorioImoveis"></activity>
+        <activity android:name=".EditActivityAluguel"></activity>
+        <activity android:name=".RelatorioImoveis" />
         <activity android:name=".RelatorioAlugueis" />
         <activity android:name=".EditActivityCliente" />
         <activity android:name=".EditActivityImovel">

@@ -17,6 +17,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,6 +27,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -40,7 +45,15 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
     private RecyclerView recyclerView;
     private AlugueisAdapter adapter;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout.OnRefreshListener refresher;
     //private Button aluga;
+
+    private Animation rotateOpen;
+    private Animation rotateClose;
+    private Animation fromBottom;
+    private Animation toBottom;
+
+    private boolean clicado = false;
 
     private Spinner spinnerImoveis, spinnerClientes;
     private int id_imovel, id_cliente;
@@ -58,6 +71,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
     private int[] datas_termino = new int[3];
     private DecimalFormat dec = new DecimalFormat("#0.00");
     //private ArrayList<Integer> valores_extras2 = new ArrayList<>();
+    private ExtendedFloatingActionButton botao_acao;
+    private FloatingActionButton botao_add_aluguel, botao_relatorio_aluguel;
+    private TextView texto_aluga, texto_relatorio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +90,13 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
         recyclerView.setAdapter(adapter);
 
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayoyt3);
+//        refresher = new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                swipeRefreshLayout.setRefreshing(true);
+//                swipeRefreshLayout.setRefreshing(false);
+//            }
+//        };
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -81,8 +104,23 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
                 adapter.notifyDataSetChanged();
                 loadSpinners();
                 swipeRefreshLayout.setRefreshing(false);
+                if(clicado){
+                    mostrarBotoes();
+                }
             }
         });
+        //swipeRefreshLayout.setOnRefreshListener(refresher);
+
+
+
+//        swipeRefreshLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                swipeRefreshLayout.setRefreshing(true);
+//                swipeRefreshLayout.setRefreshing(false);
+//            }
+//        });
+
 
         spinnerImoveis = (Spinner) findViewById(R.id.spinnerImoveis);
         spinnerClientes = (Spinner) findViewById(R.id.spinnerClientes);
@@ -93,6 +131,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
 
         spinnerImoveis.setPrompt("Escolha uma imóvel");
         loadSpinners();
+        swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setRefreshing(false);
+        //refresher.onRefresh();
 
         //aluga = findViewById(R.id.alugaImovel);
 
@@ -105,6 +146,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
         botao_inicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(clicado){
+                    mostrarBotoes();
+                }
                 calendar = Calendar.getInstance();
                 int dia = calendar.get(Calendar.DAY_OF_MONTH);
                 int mes = calendar.get(Calendar.MONTH);
@@ -143,6 +187,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
         botao_termino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(clicado){
+                    mostrarBotoes();
+                }
                 calendar = Calendar.getInstance();
                 int dia = calendar.get(Calendar.DAY_OF_MONTH);
                 int mes = calendar.get(Calendar.MONTH);
@@ -186,9 +233,76 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
+        rotateOpen = AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
+        rotateClose = AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
+        fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
+        toBottom = AnimationUtils.loadAnimation(this, R.anim.to_bottrom_anim);
+
+        botao_add_aluguel = findViewById(R.id.addAluguel);
+        botao_relatorio_aluguel = findViewById(R.id.relatorioAluguel);
+        texto_aluga = findViewById(R.id.texto_adicionar_aluguel);
+        texto_relatorio =  findViewById(R.id.texto_relatorio_aluguel);
+
+        botao_acao = findViewById(R.id.extended_alugueis);
+        botao_acao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarBotoes();
+            }
+        });
+
+    }
+
+
+
+
+    public void mostrarBotoes() {
+        mostrar(clicado);
+        animar(clicado);
+        clicado = !clicado;
+    }
+
+
+    public void mostrar(boolean clicado){
+        if(!clicado){
+            botao_add_aluguel.setVisibility(View.VISIBLE);
+            botao_add_aluguel.setEnabled(true);
+            botao_relatorio_aluguel.setVisibility(View.VISIBLE);
+            botao_relatorio_aluguel.setEnabled(true);
+            texto_aluga.setVisibility(View.VISIBLE);
+            texto_relatorio.setVisibility(View.VISIBLE);
+        }
+        else{
+            botao_add_aluguel.setVisibility(View.INVISIBLE);
+            botao_add_aluguel.setEnabled(false);
+            botao_relatorio_aluguel.setVisibility(View.INVISIBLE);
+            botao_relatorio_aluguel.setEnabled(false);
+            texto_aluga.setVisibility(View.INVISIBLE);
+            texto_relatorio.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void animar(boolean clicado) {
+        if(!clicado) {
+            botao_acao.startAnimation(rotateClose);
+            botao_add_aluguel.startAnimation(fromBottom);
+            botao_relatorio_aluguel.startAnimation(fromBottom);
+            texto_aluga.setAnimation(fromBottom);
+            texto_relatorio.setAnimation(fromBottom);
+        }
+        else {
+            botao_acao.startAnimation(rotateClose);
+            botao_add_aluguel.startAnimation(toBottom);
+            botao_relatorio_aluguel.startAnimation(toBottom);
+            texto_aluga.setAnimation(toBottom);
+            texto_relatorio.setAnimation(toBottom);
+        }
     }
 
     public void criaDialogo() {
+        if(clicado){
+            mostrarBotoes();
+        }
         lista_extras = new ArrayList<>();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Extras");
@@ -220,7 +334,7 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
                         valores_extras[2] = 1;
                     }
                 }
-                Toast.makeText(AlugueisActivity.this, valores_extras[0] + " " + valores_extras[1] + " " + valores_extras[2], Toast.LENGTH_SHORT).show();
+                Toast.makeText(AlugueisActivity.this, (valores_extras[0] == 1? "Seguro: sim" : "Seguro: não") + "\n" + (valores_extras[1] == 1? "Chave extra: sim" : "Chave extra: não") + "\n" + (valores_extras[2] == 1? "Mobiliado: sim" : "Mobiliado: não"), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -251,6 +365,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void alugaImovel(View view) {
+        if(clicado){
+            mostrarBotoes();
+        }
         if(alugado.equals("sim")) {
             Toast.makeText(this, "Imóvel já está alugado!", Toast.LENGTH_SHORT).show();
             return;
@@ -295,6 +412,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void geraRelatorio(View view){
+        if(clicado){
+            mostrarBotoes();
+        }
         Intent intent = new Intent(this, RelatorioAlugueis.class);
         startActivity(intent);
     }
@@ -304,6 +424,10 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
         super.onRestart();
         adapter.update();
         adapter.notifyDataSetChanged();
+        loadSpinners();
+        if(clicado){
+            mostrarBotoes();
+        }
     }
 
     private void loadSpinners() {
@@ -335,6 +459,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if(clicado){
+            mostrarBotoes();
+        }
         if(parent.getId() == R.id.spinnerImoveis) {
             id_imovel = pegaId(parent.getSelectedItem().toString());
             alugado = parent.getSelectedItem().toString().substring(parent.getSelectedItem().toString().length() -3);
@@ -428,10 +555,10 @@ class AlugueisViewHolder extends RecyclerView.ViewHolder implements View.OnClick
     public void onClick(View v) {
         AluguelDAO adao = new AluguelDAO(context);
         //Toast.makeText(context, "Cliente: " + this.aluguel_id.getText().toString() + "\nId: " + this.imovel_id.getText().toString(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(context, adao.imprimeImovel(Integer.parseInt(this.aluguel_id.getText().toString())), Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(context, EditActivityAluguel.class);
-//        intent.putExtra("aluguelId", Integer.parseInt(this.aluguel_id.getText().toString()));
-//        context.startActivity(intent);
+        //Toast.makeText(context, adao.imprimeImovel(Integer.parseInt(this.aluguel_id.getText().toString())), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, EditActivityAluguel.class);
+        intent.putExtra("aluguelId", Integer.parseInt(this.aluguel_id.getText().toString()));
+        context.startActivity(intent);
     }
 
 }
