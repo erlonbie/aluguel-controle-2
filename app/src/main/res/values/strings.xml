@@ -37,6 +37,8 @@
     <string name="switch_mobiliado">Mobiliado</string>
     <string name="atualizar_aluguel">Atualizar</string>
     <string name="texto_boasvindas">Bem-vindo ao Controle de Aluguéis v2.0 :)</string>
+    <string name="categoria_imovel">Categoria:</string>
+    <string name="vagas2_label">Vagas:</string>
     <string-array name="extras_aluguel">
         <item>Seguro</item>
         <item>Chave extra</item>

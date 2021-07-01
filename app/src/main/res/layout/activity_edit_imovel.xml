@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:outlineProvider="paddedBounds"
     tools:context=".EditActivityImovel">
 
     <TextView
@@ -219,5 +220,7 @@
         app:layout_constraintHorizontal_bias="0.725"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/excluiImovel" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
