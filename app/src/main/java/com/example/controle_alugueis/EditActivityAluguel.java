@@ -39,6 +39,7 @@ public class EditActivityAluguel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_aluguel);
+        setTitle("Aluguel");
 
         Intent intent = getIntent();
         aluguelId = intent.getIntExtra("aluguelId", -1);

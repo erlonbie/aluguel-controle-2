@@ -28,6 +28,7 @@ public class EditActivityImovel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_imovel);
+        setTitle("Imóvel");
 
         editEndereco = findViewById(R.id.endereco);
         editCusto = findViewById(R.id.custo);

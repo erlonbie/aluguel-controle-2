@@ -28,7 +28,7 @@ public class RelatorioAlugueis extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relatorio_alugueis);
-        setTitle("Relatório-Aluguéis");
+        setTitle("Relatório de Aluguéis");
 
         aluguelDAO = new AluguelDAO(this);
 

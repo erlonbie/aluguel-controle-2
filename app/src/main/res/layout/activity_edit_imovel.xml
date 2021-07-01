@@ -64,14 +64,52 @@
     <RadioGroup
         android:id="@+id/radioGrupo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:scaleX="0.9"
         android:scaleY="0.9"
+        android:weightSum="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/qntVagases">
+
+        <RadioButton
+            android:id="@+id/kitchenette"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:text="@string/radio_kit" />
+
+        <RadioButton
+            android:id="@+id/casa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:text="@string/radio_casa" />
+
+        <RadioButton
+
+            android:id="@+id/apartamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:text="@string/radio_ap" />
+
+        <RadioButton
+            android:id="@+id/casaCond"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            android:text="@string/radio_casaCond" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -84,23 +122,6 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <RadioButton
-                    android:id="@+id/kitchenette"
-                    android:layout_width="116dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:scaleX="0.9"
-                    android:scaleY="0.9"
-                    android:text="@string/radio_kit" />
-
-                <RadioButton
-                    android:id="@+id/casa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:scaleX="0.9"
-                    android:scaleY="0.9"
-                    android:text="@string/radio_casa" />
             </LinearLayout>
 
             <LinearLayout
@@ -109,24 +130,6 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <RadioButton
-
-                    android:id="@+id/apartamento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:scaleX="0.9"
-                    android:scaleY="0.9"
-                    android:text="@string/radio_ap" />
-
-                <RadioButton
-                    android:id="@+id/casaCond"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:scaleX="0.9"
-                    android:scaleY="0.9"
-                    android:text="@string/radio_casaCond" />
             </LinearLayout>
         </LinearLayout>
 

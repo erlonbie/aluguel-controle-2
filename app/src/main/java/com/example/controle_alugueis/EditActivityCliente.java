@@ -19,6 +19,7 @@ public class EditActivityCliente extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_cliente);
+        setTitle("Cliente");
 
         editNome = findViewById(R.id.nomeCliente);
         editIdade = findViewById(R.id.idadeCliente);

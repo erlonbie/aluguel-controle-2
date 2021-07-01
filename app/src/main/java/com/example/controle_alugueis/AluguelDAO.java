@@ -126,7 +126,7 @@ public class AluguelDAO {
 
     public boolean temCliente(int id) {
 
-        String sql = "SELECT * FROM alugueis WHERE id=" + id;
+        String sql = "SELECT * FROM alugueis WHERE cliente_id=" + id;
         Cursor cursor = database.rawQuery(sql, null);
 
         if(cursor.moveToNext()) {
@@ -137,7 +137,7 @@ public class AluguelDAO {
 
     public boolean temImovel(int id) {
 
-        String sql = "SELECT * FROM alugueis WHERE id=" + id;
+        String sql = "SELECT * FROM alugueis WHERE imovel_id=" + id;
         Cursor cursor = database.rawQuery(sql, null);
 
         if(cursor.moveToNext()) {
@@ -152,7 +152,7 @@ public class AluguelDAO {
         Cursor cursor = database.rawQuery(sql, null);
 
         if (cursor.moveToNext()) {
-            nome = "cheguei até aqui";
+            nome = "Cliente";
             int cliente_id = cursor.getInt(2);
             String sql2 = "SELECT * FROM clientes WHERE id=" + cliente_id;
             Cursor cursor2 = database.rawQuery(sql2, null);
@@ -170,7 +170,7 @@ public class AluguelDAO {
         Cursor cursor = database.rawQuery(sql, null);
 
         if (cursor.moveToNext()) {
-            cat = "cheguei até aqui";
+            cat = "Categoria";
             int imovel_id = cursor.getInt(1);
             String sql2 = "SELECT * FROM imoveis WHERE id=" + imovel_id;
             Cursor cursor2 = database.rawQuery(sql2, null);
