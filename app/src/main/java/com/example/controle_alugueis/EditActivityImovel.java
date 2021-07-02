@@ -121,53 +121,17 @@ public class EditActivityImovel extends AppCompatActivity {
         autocomplete_imoveis.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                if(autocomplete_imoveis.getText().toString().equals("Kitchenette")) {
-                    quartos.setText("1");
-                    quartos.setEnabled(false);
-                    suites.setText("1");
-                    suites.setEnabled(false);
-                    vagas.setText("1");
-                    vagas.setEnabled(false);
-                }
-                else {
-                    quartos.setEnabled(true);
-                    suites.setEnabled(true);
-                    vagas.setEnabled(true);
-                }
+                verificaKitchenette();
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(autocomplete_imoveis.getText().toString().equals("Kitchenette")) {
-                    quartos.setText("1");
-                    quartos.setEnabled(false);
-                    suites.setText("1");
-                    suites.setEnabled(false);
-                    vagas.setText("1");
-                    vagas.setEnabled(false);
-                }
-                else {
-                    quartos.setEnabled(true);
-                    suites.setEnabled(true);
-                    vagas.setEnabled(true);
-                }
+                verificaKitchenette();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(autocomplete_imoveis.getText().toString().equals("Kitchenette")) {
-                    quartos.setText("1");
-                    quartos.setEnabled(false);
-                    suites.setText("1");
-                    suites.setEnabled(false);
-                    vagas.setText("1");
-                    vagas.setEnabled(false);
-                }
-                else {
-                    quartos.setEnabled(true);
-                    suites.setEnabled(true);
-                    vagas.setEnabled(true);
-                }
+                verificaKitchenette();
             }
         });
 
@@ -190,12 +154,28 @@ public class EditActivityImovel extends AppCompatActivity {
         }
     }
 
-    public boolean verificaSuitesMaiorQueQuarto() {
-        if(editQuartos.getValue() >= editSuites.getValue()) {
-            return true;
+    public void verificaKitchenette(){
+        if(autocomplete_imoveis.getText().toString().equals("Kitchenette")) {
+            quartos.setText("1");
+            quartos.setEnabled(false);
+            suites.setText("1");
+            suites.setEnabled(false);
+            vagas.setText("1");
+            vagas.setEnabled(false);
         }
-        return false;
+        else {
+            quartos.setEnabled(true);
+            suites.setEnabled(true);
+            vagas.setEnabled(true);
+        }
     }
+
+//    public boolean verificaSuitesMaiorQueQuarto() {
+//        if(editQuartos.getValue() >= editSuites.getValue()) {
+//            return true;
+//        }
+//        return false;
+//    }
 
     public void salvarClicado2(View view) {
 
