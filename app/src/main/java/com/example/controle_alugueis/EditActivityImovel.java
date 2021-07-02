@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -116,6 +118,59 @@ public class EditActivityImovel extends AppCompatActivity {
         vagas = findViewById(R.id.qntVagases);
         vagas.setFilters(new InputFilter[] { new MinMaxFilter("1", "3")});
 
+        autocomplete_imoveis.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if(autocomplete_imoveis.getText().toString().equals("Kitchenette")) {
+                    quartos.setText("1");
+                    quartos.setEnabled(false);
+                    suites.setText("1");
+                    suites.setEnabled(false);
+                    vagas.setText("1");
+                    vagas.setEnabled(false);
+                }
+                else {
+                    quartos.setEnabled(true);
+                    suites.setEnabled(true);
+                    vagas.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(autocomplete_imoveis.getText().toString().equals("Kitchenette")) {
+                    quartos.setText("1");
+                    quartos.setEnabled(false);
+                    suites.setText("1");
+                    suites.setEnabled(false);
+                    vagas.setText("1");
+                    vagas.setEnabled(false);
+                }
+                else {
+                    quartos.setEnabled(true);
+                    suites.setEnabled(true);
+                    vagas.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(autocomplete_imoveis.getText().toString().equals("Kitchenette")) {
+                    quartos.setText("1");
+                    quartos.setEnabled(false);
+                    suites.setText("1");
+                    suites.setEnabled(false);
+                    vagas.setText("1");
+                    vagas.setEnabled(false);
+                }
+                else {
+                    quartos.setEnabled(true);
+                    suites.setEnabled(true);
+                    vagas.setEnabled(true);
+                }
+            }
+        });
+
 
         imovelDAO = new ImovelDAO(this);
         Intent intent = getIntent();
@@ -215,14 +270,14 @@ public class EditActivityImovel extends AppCompatActivity {
             Toast.makeText(this, "Quantidade de suítes não pode ser maior que a de quartos!", Toast.LENGTH_SHORT).show();
             return;
         }
-        int piscina, churrasqueira, playground;
-        if(autocomplete_imoveis.getText().equals("Kitchenette")) {
+        int piscina=0, churrasqueira=0, playground=0;
+        if(autocomplete_imoveis.getText().toString().equals("Kitchenette")) {
             piscina = 0; churrasqueira = 0; playground = 0;
         }
-        else if(autocomplete_imoveis.getText().equals("Casa Padrao")) {
+        else if(autocomplete_imoveis.getText().toString().equals("Casa Padrao")) {
             piscina = 0; churrasqueira = 1; playground = 0;
         }
-        else if (autocomplete_imoveis.getText().equals("Apartamento")) {
+        else if (autocomplete_imoveis.getText().toString().equals("Apartamento")) {
             piscina = 1; churrasqueira = 0; playground = 1;
         }
         else {
