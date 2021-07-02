@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">controle-alugueis</string>
+    <string name="app_name">Controle-Alugueis</string>
     <string name="button_imoveis">Imóveis</string>
     <string name="button_clientes">Clientes</string>
     <string name="button_alugueis">Alugueis</string>
