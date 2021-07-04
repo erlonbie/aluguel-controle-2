@@ -6,7 +6,7 @@
     android:layout_height="70dp">
 
     <ImageView
-        android:id="@+id/itemIcon"
+        android:id="@+id/item_k"
         android:layout_width="50dp"
         android:layout_height="50dp"
 
@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_assignment_24" />
+        app:srcCompat="@drawable/icon_aluguel" />
 
     <TextView
         android:id="@+id/itemCategory"
@@ -26,7 +26,7 @@
 
         android:textColor="#39393a"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/itemIcon"
+        app:layout_constraintStart_toEndOf="@+id/item_k"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

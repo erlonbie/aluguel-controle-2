@@ -1,5 +1,6 @@
 package com.example.controle_alugueis;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,7 +28,10 @@ public class ClientesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientes);
-        setTitle("Clientes");
+        setTitle("  Clientes");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.drawable.ic_baseline_emoji_people_24);
 
         recyclerView = findViewById(R.id.list_recycler_cliente);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -83,7 +87,7 @@ class ClientesAdapter extends RecyclerView.Adapter<ClientesViewHolder> {
     public void onBindViewHolder(ClientesViewHolder holder, int position) {
         holder.clientId.setText(String.valueOf(clientes.get(position).getId()));
         holder.nome.setText(clientes.get(position).getNome());
-        holder.imovel_id.setText(String.valueOf(clientes.get(position).getImovel_id()));
+        //holder.imovel_id.setText(String.valueOf(clientes.get(position).getImovel_id()));
         holder.idade.setText(String.valueOf(clientes.get(position).getIdade()));
     }
 
@@ -104,7 +108,7 @@ class ClientesViewHolder extends RecyclerView.ViewHolder implements View.OnClick
         this.context = context;
         clientId = v.findViewById(R.id.itemId);
         nome = v.findViewById(R.id.itemName);
-        imovel_id = v.findViewById(R.id.imovelId);
+        //imovel_id = v.findViewById(R.id.imovelId);
         idade = v.findViewById(R.id.itemAge);
         v.setOnClickListener(this);
     }

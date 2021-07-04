@@ -14,7 +14,7 @@
         android:clickable="true"
         android:enabled="false"
         android:onClick="alugaImovel"
-        android:src="@drawable/ic_baseline_add_business_24"
+        android:src="@drawable/ic_baseline_fact_check_24"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/extended_alugueis"
         app:layout_constraintEnd_toEndOf="@+id/extended_alugueis" />

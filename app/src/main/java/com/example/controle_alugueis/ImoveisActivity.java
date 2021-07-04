@@ -1,5 +1,6 @@
 package com.example.controle_alugueis;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,8 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,7 +45,11 @@ public class ImoveisActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_imoveis);
-        setTitle("Imóveis");
+        setTitle("  Imóveis");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.drawable.ic_baseline_house_24);
+
 
         recyclerView = findViewById(R.id.list_recycler_imovel);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -177,6 +182,26 @@ class ImoveisAdapter extends RecyclerView.Adapter<ImoveisViewHolder> {
         holder.categoria.setText(imoveis.get(position).getCategoria());
         holder.item_id.setText(String.valueOf(imoveis.get(position).getId()));
         holder.endereco.setText(imoveis.get(position).getEndereco());
+        if(holder.categoria.getText().toString().equals("Kitchenette")) {
+            holder.cp.setVisibility(View.INVISIBLE);
+            holder.ap.setVisibility(View.INVISIBLE);
+            holder.cc.setVisibility(View.INVISIBLE);
+        }
+        else if(holder.categoria.getText().toString().equals("Casa Padrao")) {
+            holder.kit.setVisibility(View.INVISIBLE);
+            holder.ap.setVisibility(View.INVISIBLE);
+            holder.cc.setVisibility(View.INVISIBLE);
+        }
+        else if(holder.categoria.getText().toString().equals("Apartamento")) {
+            holder.cp.setVisibility(View.INVISIBLE);
+            holder.kit.setVisibility(View.INVISIBLE);
+            holder.cc.setVisibility(View.INVISIBLE);
+        }
+        else {
+            holder.cp.setVisibility(View.INVISIBLE);
+            holder.ap.setVisibility(View.INVISIBLE);
+            holder.kit.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -190,6 +215,7 @@ class ImoveisViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public Context context;
     public TextView categoria, item_id, endereco;
+    public ImageView kit, cp, ap, cc;
     public int id;
 
     public ImoveisViewHolder(ConstraintLayout v, Context context) {
@@ -198,6 +224,10 @@ class ImoveisViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         categoria = v.findViewById(R.id.itemCategory);
         item_id = v.findViewById(R.id.itemId);
         endereco = v.findViewById(R.id.itemAdress);
+        kit= v.findViewById(R.id.item_k);
+        cp = v.findViewById(R.id.item_cp);
+        ap = v.findViewById(R.id.item_a);
+        cc = v.findViewById(R.id.item_cc);
         v.setOnClickListener(this);
     }
 

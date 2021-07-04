@@ -37,7 +37,7 @@ public class EditActivityCliente extends AppCompatActivity {
 
         if(clientId != -1) {
             Cliente cliente = clienteDAO.get(clientId);
-            Toast.makeText(this, clienteDAO.get(clientId).getNome(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, clienteDAO.get(clientId).getNome(), Toast.LENGTH_SHORT).show();
             nome.setText(cliente.getNome());
             idade.setText(String.valueOf(cliente.getIdade()));
         }

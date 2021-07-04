@@ -1,5 +1,6 @@
 package com.example.controle_alugueis;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -79,7 +80,10 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alugueis);
-        setTitle("Aluguéis");
+        setTitle("  Aluguéis");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.drawable.ic_baseline_assignment_24);
 
         recyclerView = findViewById(R.id.list_recycler_alugueis);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -365,11 +369,17 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void alugaImovel(View view) {
+
+        ClienteDAO clienteDAO = new ClienteDAO(this);
         if(clicado){
             mostrarBotoes();
         }
         if(alugado.equals("sim")) {
             Toast.makeText(this, "Imóvel já está alugado!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(clienteDAO.retornaImovelId(id_cliente) != 0) {
+            Toast.makeText(this, "Cliente já é locatário de um imóvel!", Toast.LENGTH_SHORT).show();
             return;
         }
         if(aluguel_inicio.getText().toString().equals("") || aluguel_termino.getText().toString().equals("")) {
@@ -402,6 +412,9 @@ public class AlugueisActivity extends AppCompatActivity implements AdapterView.O
                    aluguelDAO.add(aluguel);
                    ImovelDAO imovelDAO = new ImovelDAO(this);
                    Imovel imovel = imovelDAO.get(id_imovel);
+                   Cliente cliente = clienteDAO.get(id_cliente);
+                   cliente.setImovel_id(id_imovel);
+                   clienteDAO.update(cliente);
                    imovelDAO.alugaImovel(imovel);
                    adapter.update();
                    adapter.notifyDataSetChanged();

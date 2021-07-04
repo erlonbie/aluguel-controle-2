@@ -7,7 +7,7 @@
     android:layout_height="70dp">
 
     <ImageView
-        android:id="@+id/itemIcon"
+        android:id="@+id/item_k"
         android:layout_width="50dp"
         android:layout_height="50dp"
 
@@ -15,7 +15,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_emoji_people_24" />
+        app:srcCompat="@drawable/icon_person" />
 
     <TextView
         android:id="@+id/itemName"
@@ -27,7 +27,7 @@
 
         android:textColor="#39393a"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/itemIcon"
+        app:layout_constraintStart_toEndOf="@+id/item_k"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -60,7 +60,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
 
-        android:text="TextView"
         android:textColor="#39393a"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/itemAge"

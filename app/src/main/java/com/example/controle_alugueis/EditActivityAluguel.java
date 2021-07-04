@@ -22,6 +22,7 @@ public class EditActivityAluguel extends AppCompatActivity {
 
     private AluguelDAO aluguelDAO;
     private ImovelDAO imovelDAO;
+    private ClienteDAO clienteDAO;
     private EditText aluguel_inicio, aluguel_termino;
     private Switch seguro, chave, mobilia;
     private int aluguelId;
@@ -45,6 +46,7 @@ public class EditActivityAluguel extends AppCompatActivity {
         aluguelId = intent.getIntExtra("aluguelId", -1);
         aluguelDAO = new AluguelDAO(this);
         imovelDAO = new ImovelDAO(this);
+        clienteDAO = new ClienteDAO(this);
         aluguel = aluguelDAO.get(aluguelId);
 
         aluguel_inicio = findViewById(R.id.edit_inicio_aluguel);
@@ -215,15 +217,20 @@ public class EditActivityAluguel extends AppCompatActivity {
             return;
         }
 
+        Toast.makeText(this, "Aluguel atualizado!", Toast.LENGTH_SHORT).show();
         Aluguel aluguel = new Aluguel(aluguelId, id_imovel, id_cliente, data_ini , data_ter , valor_seguro, valor_chave, valor_mobilia);
         aluguelDAO.update(aluguel);
         finish();
     }
 
     public void apagarClicado(View view) {
+        Toast.makeText(this, "Aluguel excluído!", Toast.LENGTH_SHORT).show();
         aluguelDAO.delete(aluguelId);
         Imovel imovel = imovelDAO.get(aluguel.getImovel_id());
         imovelDAO.desocupaImovel(imovel);
+        Cliente cliente = clienteDAO.get(id_cliente);
+        cliente.setImovel_id(0);
+        clienteDAO.update(cliente);
         finish();
     }
 }

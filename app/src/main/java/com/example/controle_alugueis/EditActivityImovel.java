@@ -143,7 +143,7 @@ public class EditActivityImovel extends AppCompatActivity {
         if(imovelId != -1) {
             alugado_status = imovelDAO.retornaAlugado(imovelId);
             Imovel imovel = imovelDAO.get(imovelId);
-            Toast.makeText(this, imovelDAO.get(imovelId).getCategoria(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, imovelDAO.get(imovelId).getCategoria(), Toast.LENGTH_SHORT).show();
             endereco.setText(imovel.getEndereco());
             custo.setText(String.valueOf(imovel.getCusto()));
             area.setText(String.valueOf(imovel.getArea()));

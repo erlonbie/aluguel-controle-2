@@ -116,4 +116,16 @@ public class ClienteDAO {
         }
         return null;
     }
+
+    public int retornaImovelId(int id) {
+
+        int imovel_id = 0;
+        String sql = "SELECT * FROM clientes WHERE id=" + id;
+        Cursor cursor = database.rawQuery(sql, null);
+
+        if(cursor.moveToNext()) {
+            imovel_id = cursor.getInt(1);
+        }
+        return imovel_id;
+    }
 }
