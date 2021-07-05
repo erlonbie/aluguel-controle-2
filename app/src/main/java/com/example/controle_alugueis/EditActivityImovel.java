@@ -271,7 +271,12 @@ public class EditActivityImovel extends AppCompatActivity {
 
         boolean result;
         result = imovelId == -1 ? imovelDAO.add(imovel) : imovelDAO.update(imovel);
-        Toast.makeText(this, "Imóvel salvo!", Toast.LENGTH_SHORT).show();
+        if(imovelId == -1) {
+            Toast.makeText(this, "Imóvel salvo!", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Imóvel atualizado!", Toast.LENGTH_SHORT).show();
+        }
 
         if(result) finish();
     }

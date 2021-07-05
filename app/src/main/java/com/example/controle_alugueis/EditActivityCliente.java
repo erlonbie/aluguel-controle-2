@@ -57,6 +57,12 @@ public class EditActivityCliente extends AppCompatActivity {
 
         boolean result;
         result = clientId == -1 ? clienteDAO.add(cliente) : clienteDAO.update(cliente);
+        if(clientId == -1) {
+            Toast.makeText(this, "Cliente salvo!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Cliente atualizado!", Toast.LENGTH_SHORT).show();
+        }
 
         if(result) finish();
     }

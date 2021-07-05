@@ -118,7 +118,6 @@ public class ImovelDAO {
 
         try {
             database.execSQL(sql);
-            Toast.makeText(context, "Imóvel Salvo!", Toast.LENGTH_SHORT).show();
             return true;
         }
         catch (SQLException e) {
@@ -148,7 +147,6 @@ public class ImovelDAO {
 
         try {
             database.execSQL(sql);
-            Toast.makeText(context, "Imóvel atualizado!", Toast.LENGTH_SHORT).show();
             return true;
         }
         catch (SQLException e) {
@@ -215,7 +213,7 @@ public class ImovelDAO {
 
         try {
             database.execSQL(sql);
-            Toast.makeText(context, "Imóvel alugado!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Imóvel alugado!", Toast.LENGTH_SHORT).show();
             return true;
         }
         catch (SQLException e) {
@@ -245,11 +243,11 @@ public class ImovelDAO {
 
         try {
             database.execSQL(sql);
-            Toast.makeText(context, "Imóvel alugado!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Imóvel desocupado!", Toast.LENGTH_SHORT).show();
             return true;
         }
         catch (SQLException e) {
-            Toast.makeText(context, "Erro ao alugar um imóvel!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Erro ao desocupar um imóvel!" + e.getMessage(), Toast.LENGTH_SHORT).show();
             return false;
         }
     }

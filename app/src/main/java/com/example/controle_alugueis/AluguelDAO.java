@@ -57,7 +57,7 @@ public class AluguelDAO {
 
         try {
             database.execSQL(sql);
-            //Toast.makeText(context, "Aluguel Salvo!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Aluguel Salvo!", Toast.LENGTH_SHORT).show();
             return true;
         }
         catch (SQLException e) {
@@ -93,7 +93,6 @@ public class AluguelDAO {
         String sql = "DELETE FROM alugueis WHERE id=" +id;
         try {
             database.execSQL(sql);
-            Toast.makeText(context, "Aluguel apagado!", Toast.LENGTH_SHORT).show();
             return true;
         }
         catch (SQLException e) {

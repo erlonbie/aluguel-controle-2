@@ -80,7 +80,6 @@ public class ClienteDAO {
 
         try {
             database.execSQL(sql);
-            Toast.makeText(context, "Cliente atualizado!", Toast.LENGTH_SHORT).show();
             return true;
         }
         catch (SQLException e) {
