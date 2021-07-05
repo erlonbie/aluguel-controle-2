@@ -183,25 +183,37 @@ class ImoveisAdapter extends RecyclerView.Adapter<ImoveisViewHolder> {
         holder.item_id.setText(String.valueOf(imoveis.get(position).getId()));
         holder.endereco.setText(imoveis.get(position).getEndereco());
         if(holder.categoria.getText().toString().equals("Kitchenette")) {
-            holder.cp.setVisibility(View.INVISIBLE);
-            holder.ap.setVisibility(View.INVISIBLE);
-            holder.cc.setVisibility(View.INVISIBLE);
+            holder.geral.setImageResource(R.drawable.icon_kitchenette);
         }
         else if(holder.categoria.getText().toString().equals("Casa Padrao")) {
-            holder.kit.setVisibility(View.INVISIBLE);
-            holder.ap.setVisibility(View.INVISIBLE);
-            holder.cc.setVisibility(View.INVISIBLE);
+            holder.geral.setImageResource(R.drawable.icon_house);
         }
         else if(holder.categoria.getText().toString().equals("Apartamento")) {
-            holder.cp.setVisibility(View.INVISIBLE);
-            holder.kit.setVisibility(View.INVISIBLE);
-            holder.cc.setVisibility(View.INVISIBLE);
+            holder.geral.setImageResource(R.drawable.icon_apartament);
         }
         else {
-            holder.cp.setVisibility(View.INVISIBLE);
-            holder.ap.setVisibility(View.INVISIBLE);
-            holder.kit.setVisibility(View.INVISIBLE);
+            holder.geral.setImageResource(R.drawable.icon_casa_cond);
         }
+//        if(holder.categoria.getText().toString().equals("Kitchenette")) {
+//            holder.cp.setVisibility(View.INVISIBLE);
+//            holder.ap.setVisibility(View.INVISIBLE);
+//            holder.cc.setVisibility(View.INVISIBLE);
+//        }
+//        else if(holder.categoria.getText().toString().equals("Casa Padrao")) {
+//            holder.kit.setVisibility(View.INVISIBLE);
+//            holder.ap.setVisibility(View.INVISIBLE);
+//            holder.cc.setVisibility(View.INVISIBLE);
+//        }
+//        else if(holder.categoria.getText().toString().equals("Apartamento")) {
+//            holder.cp.setVisibility(View.INVISIBLE);
+//            holder.kit.setVisibility(View.INVISIBLE);
+//            holder.cc.setVisibility(View.INVISIBLE);
+//        }
+//        else {
+//            holder.cp.setVisibility(View.INVISIBLE);
+//            holder.ap.setVisibility(View.INVISIBLE);
+//            holder.kit.setVisibility(View.INVISIBLE);
+//        }
     }
 
     @Override
@@ -215,7 +227,7 @@ class ImoveisViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public Context context;
     public TextView categoria, item_id, endereco;
-    public ImageView kit, cp, ap, cc;
+    public ImageView kit, cp, ap, cc, geral;
     public int id;
 
     public ImoveisViewHolder(ConstraintLayout v, Context context) {
@@ -224,10 +236,11 @@ class ImoveisViewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         categoria = v.findViewById(R.id.itemCategory);
         item_id = v.findViewById(R.id.itemId);
         endereco = v.findViewById(R.id.itemAdress);
-        kit= v.findViewById(R.id.item_k);
-        cp = v.findViewById(R.id.item_cp);
-        ap = v.findViewById(R.id.item_a);
-        cc = v.findViewById(R.id.item_cc);
+        geral= v.findViewById(R.id.item_k);
+//        kit= v.findViewById(R.id.item_k);
+//        cp = v.findViewById(R.id.item_cp);
+//        ap = v.findViewById(R.id.item_a);
+//        cc = v.findViewById(R.id.item_cc);
         v.setOnClickListener(this);
     }
 
