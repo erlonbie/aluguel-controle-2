@@ -20,14 +20,16 @@
 
     <EditText
         android:id="@+id/data_relatorio"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:enabled="false"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="@+id/botao_data_relatorio"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/botao_data_relatorio"
         app:layout_constraintTop_toTopOf="@+id/botao_data_relatorio" />
 
     <ScrollView
@@ -43,7 +45,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
