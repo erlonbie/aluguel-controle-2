@@ -10,21 +10,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Controlealugueis">
-        <activity android:name=".EditActivityAluguel"></activity>
-        <activity android:name=".RelatorioImoveis" />
-        <activity android:name=".RelatorioAlugueis" />
-        <activity android:name=".EditActivityCliente" />
-        <activity android:name=".EditActivityImovel">
+        <activity android:name=".EditActivityAluguel" android:screenOrientation="portrait"></activity>
+        <activity android:name=".RelatorioImoveis" android:screenOrientation="portrait"/>
+        <activity android:name=".RelatorioAlugueis" android:screenOrientation="portrait"/>
+        <activity android:name=".EditActivityCliente" android:screenOrientation="portrait"/>
+        <activity android:name=".EditActivityImovel" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.EditActivityImovel" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".AlugueisActivity" />
-        <activity android:name=".ClientesActivity" />
-        <activity android:name=".ImoveisActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".AlugueisActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ClientesActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ImoveisActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
